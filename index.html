@@ -217,11 +217,19 @@
     return group;
   }
 
-  // Render all categories and entries
-  Object.entries(grouped).forEach(([cat, entries]) => {
-    const groupElem = createCategoryGroup(cat, entries);
-    container.appendChild(groupElem);
-  });
+// Get categories as [category, entries] pairs, then sort alphabetically by category
+const sortedCategories = Object.entries(grouped).sort((a, b) => {
+  const catA = a[0].toLowerCase();
+  const catB = b[0].toLowerCase();
+  return catA.localeCompare(catB);
+});
+
+// Render sorted categories
+sortedCategories.forEach(([cat, entries]) => {
+  const groupElem = createCategoryGroup(cat, entries);
+  container.appendChild(groupElem);
+});
+
 
   // Search filter
   const searchInput = document.getElementById('searchInput');
