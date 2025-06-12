@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Internal Knowledge Base</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f9f9f9;
+    color: #333;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  h1 {
+    margin-bottom: 5px;
+  }
+  #searchInput {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 90%;
+    max-width: 400px;
+  }
+  .category-group {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    padding: 15px 20px;
+  }
+  .category-group h2 {
+    margin-top: 0;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .category-group h2::after {
+    content: "▼";
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+  }
+  .category-group.collapsed h2::after {
+    transform: rotate(-90deg);
+  }
+  .entries {
+    margin-top: 15px;
+  }
+  .entry {
+    border-top: 1px solid #eee;
+    padding: 12px 0;
+  }
+  .entry:first-child {
+    border-top: none;
+  }
+  .entry h3 {
+    margin: 0 0 6px 0;
+    font-weight: 600;
+  }
+  .entry h3 a {
+    color: #0078d4;
+    text-decoration: none;
+  }
+  .entry h3 a:hover {
+    text-decoration: underline;
+  }
+  p {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.3;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Internal Knowledge Base</h1>
+  <p>Search articles below</p>
+</header>
+
+<input type="search" id="searchInput" placeholder="Search articles..." aria-label="Search articles" />
+
+<div id="contentContainer">
+  <!-- Categories and entries will be injected here by JS -->
+</div>
+
+<script>
+  const entriesData = [
+    {
+      title: "How to escalate issues while on site",
+      category: "Field Operations",
+      description: "Guidance on how to request pro licenses and escalate technical or logistical issues during on-site visits.",
+      link: "https://axon.quip.com/v6weAzjTJtSH/Pro-Licenses-And-Other-Onsite-Request"
+    },
+    {
+      title: "Fleet 3 SIM In MDT - Setup Guide",
+      category: "Technical Configuration",
+      description: "Setup guide for Fleet 3 SIM in the MDT device.",
+      link: "https://axon.quip.com/JUZjAKQDSQlB/Fleet-3-SIM-In-MDT-Setup-Guide"
+    },
+    {
+      title: "Fleet 3 Dual SIM Configuration",
+      category: "Technical Configuration",
+      description: "Configurations needed in order to run an agency-provided SIM in the MDT and a secondary SIM in the router (for LTE upload).",
+      link: "https://axon.quip.com/1oZVAXP6QBrO/Fleet-3-Dual-SIM-Configuration"
+    },
+    {
+      title: "Fleet Door Trigger Installation",
+      category: "Configuration and Installation",
+      description: "How to install hardware door triggers for a Fleet system.",
+      link: "https://axon.quip.com/vc7rAtAo64zs/71210-Fleet-Door-Trigger-Installation"
+    },
+    {
+      title: "Advanced RMA Process for Fleet Services",
+      category: "Field Operations",
+      description: "Processing an ASAP RMA while onsite.",
+      link: "https://axon.quip.com/tTsUAc6yp56q/Advanced-RMA-Process-for-Fleet-Services"
+    },
+    {
+      title: "Closure and Revisit Request Email Procedures",
+      category: "Pre/Post Deployment",
+      description: "Sending wrap-up emails.",
+      link: "https://axon.quip.com/5vMZAzMhIdW1/Fleet-Services-PSM-Fleet-Closure-and-Revisit-Request-Email-Procedures"
+    },
+    {
+      title: "Pre and Post Fleet Services Templates",
+      category: "Pre/Post Deployment",
+      description: "Email templates for Fleet PSM.",
+      link: "https://axon.quip.com/0rjbAtZnjnaF/Pre-and-Post-Fleet-Services-Templates"
+    },
+    {
+      title: "Professional Services Manager Team, Axon Fleet - Contact Information",
+      category: "Team Data",
+      description: "Team contact info.",
+      link: "https://axon.quip.com/0DvDA2dQh8sH/Professional-Services-Manager-Team-Axon-Fleet-Contact-Information"
+    }
+  ];
+
+  const container = document.getElementById('contentContainer');
+
+  // Group entries by category
+  const grouped = entriesData.reduce((acc, entry) => {
+    if (!acc[entry.category]) acc[entry.category] = [];
+    acc[entry.category].push(entry);
+    return acc;
+  }, {});
+
+  function createCategoryGroup(category, entries) {
+    const group = document.createElement('section');
+    group.classList.add('category-group');
+
+    const heading = document.createElement('h2');
+    heading.textContent = category;
+    heading.tabIndex = 0;
+    heading.setAttribute('role', 'button');
+    heading.setAttribute('aria-expanded', 'true');
+    heading.setAttribute('aria-controls', `${category.replace(/\s+/g, '-')}-entries`);
+
+    const entriesDiv = document.createElement('div');
+    entriesDiv.classList.add('entries');
+    entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
+
+    entries.forEach(entry => {
+      const entryDiv = document.createElement('div');
+      entryDiv.classList.add('entry');
+      entryDiv.setAttribute('data-title', entry.title.toLowerCase());
+      entryDiv.setAttribute('data-category', category);
+
+      const title = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = entry.link;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = entry.title;
+      title.appendChild(link);
+
+      const desc = document.createElement('p');
+      desc.textContent = entry.description;
+
+      entryDiv.appendChild(title);
+      entryDiv.appendChild(desc);
+      entriesDiv.appendChild(entryDiv);
+    });
+
+    // Collapse toggle functionality
+    heading.addEventListener('click', () => {
+      const expanded = heading.getAttribute('aria-expanded') === 'true';
+      heading.setAttribute('aria-expanded', String(!expanded));
+      group.classList.toggle('collapsed');
+      entriesDiv.style.display = expanded ? 'none' : 'block';
+    });
+
+    heading.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        heading.click();
+      }
+    });
+
+    group.appendChild(heading);
+    group.appendChild(entriesDiv);
+
+    return group;
+  }
+
+  // Render all categories and entries
+  Object.entries(grouped).forEach(([cat, entries]) => {
+    const groupElem = createCategoryGroup(cat, entries);
+    container.appendChild(groupElem);
+  });
+
+  // Search filter
+  const searchInput = document.getElementById('searchInput');
+
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    // Show/hide entries based on search term
+    const allEntries = container.querySelectorAll('.entry');
+    allEntries.forEach(entry => {
+      const title = entry.getAttribute('data-title');
+      const match = title.includes(searchTerm);
+      entry.style.display = match ? '' : 'none';
+    });
+
+    // Hide entire category groups if no visible entries inside
+    const allGroups = container.querySelectorAll('.category-group');
+    allGroups.forEach(group => {
+      const visibleEntries = group.querySelectorAll('.entry:not([style*="display: none"])');
+      group.style.display = visibleEntries.length ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>
