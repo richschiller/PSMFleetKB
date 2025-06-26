@@ -1,0 +1,110 @@
+const entriesData = [
+{
+      title: "Poke & Wrap Site",
+      category: "PSM Useful Info",
+      description: "PokeandWrap.com",
+      link: "www.pokeandwrap.com"
+    },
+    {
+      title: "Fleet Services SharePoint Home Page",
+      category: "PSM Useful Info",
+      description: "Main Page for finding all Deployment Spreadsheets",
+      link: "https://aaxn.sharepoint.com/sites/fleetservices79/Shared%20Documents/Forms/AllItems.aspx"
+    },    
+    {
+      title: "Radar Interface Configuration",
+      category: "Configuration and Installation",
+      description: "Configuring and interfacing the Stalker or Kustom Signal radar systems with Axon Fleet 3.",
+      link: "https://axon.quip.com/Ec1BA3coVbmP/Radar-Interface-Configuration"
+    },
+            {
+      title: "Fleet 2 Landing Page",
+      category: "PSM Useful Info",
+      description: "Source Document for all Fleet 2 Info and SKUs",
+      link: "https://axon.quip.com/GV5IAzr8DmMm/Fleet-2-Only-Axon-Fleet-2-Landing-Page"
+    },
+        {
+      title: "Fleet 3 Landing Page",
+      category: "PSM Useful Info",
+      description: "Source Document for all Fleet 3 Info and SKUs",
+      link: "https://axon.quip.com/e609AAGen1je/Axon-Fleet-3-Landing-Page"
+    },
+    {
+      title: "Cradlepoint Router Config Files",
+      category: "Configuration and Installation",
+      description: "Configuration .json files for Fleet 3",
+      link: "https://aaxn.sharepoint.com/sites/fleetservices79/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Ffleetservices79%2FShared%20Documents%2FCRADLEPOINT%20ROUTER%20CONFIGURATION%20FILES&viewid=ee336fbc%2Da08b%2D4218%2Db842%2D028f9fb52565&e=5%3Aeb3c4e7da4d148a3bdd19ebfe0db46ce&sharingv2=true&fromShare=true&at=9&CID=4c1356f3%2Df27f%2D4ca5%2Da9fd%2D0a52529b3ad7&FolderCTID=0x012000D42A2874B7524E4A894F1778E4B5D603"
+    },
+    {
+      title: "Site Deployment Information",
+      category: "PSM Useful Info",
+      description: "Site Details for a Deployment (Pulled from Smartsheet)",
+      link: "https://app.smartsheet.com/b/publish?EQBCT=051ed95b1fca44f6a576aef1081604fd"
+    },
+    {
+      title: "Fleet 3 - The Gold Standard",
+      category: "Configuration and Installation",
+      description: "Best Practices for Installing Fleet 3 in a Vehicle.",
+      link: "https://aaxn.sharepoint.com/:b:/s/fleetservices79/ETRjl3i0xTpIi5Y-XAO4e1MBJKGIb0tOOXjQO7xq-liAPw?e=tSCEs1"
+    },       
+    {
+      title: "Axon Services Network (ASN) Participant Program",
+      category: "PSM Useful Info",
+      description: "Overview of the Axon ASN Program,",
+      link: "https://axon.quip.com/sctvA9nTKRK8/Axon-Services-Network-Participant-Program"
+    },    
+   {
+      title: "Non-Axon, Common Electrical Components",
+      category: "PSM Useful Info",
+      description: "Electrical Parts Odering Process,",
+      link: "https://axon.quip.com/N1CUA7bteFhJ/PSO-Fleet-3-Services-Expedited-Non-Axon-Common-Electrical-Components"
+    },    
+     {
+      title: "How to escalate issues while on site",
+      category: "Field Operations",
+      description: "Guidance on how to request pro licenses and escalate technical or logistical issues during on-site visits.",
+      link: "https://axon.quip.com/v6weAzjTJtSH/Pro-Licenses-And-Other-Onsite-Request"
+    },
+    {
+      title: "Fleet 3 SIM In MDT - Setup Guide",
+      category: "Technical Configuration",
+      description: "Setup guide for Fleet 3 SIM in the MDT device.",
+      link: "https://axon.quip.com/JUZjAKQDSQlB/Fleet-3-SIM-In-MDT-Setup-Guide"
+    },
+    {
+      title: "Fleet 3 Dual SIM Configuration",
+      category: "Technical Configuration",
+      description: "Configurations needed in order to run an agency-provided SIM in the MDT and a secondary SIM in the router (for LTE upload).",
+      link: "https://axon.quip.com/1oZVAXP6QBrO/Fleet-3-Dual-SIM-Configuration"
+    },
+    {
+      title: "Fleet Door Trigger Installation",
+      category: "Configuration and Installation",
+      description: "How to install hardware door triggers for a Fleet system.",
+      link: "https://axon.quip.com/vc7rAtAo64zs/71210-Fleet-Door-Trigger-Installation"
+    },
+    {
+      title: "Advanced RMA Process for Fleet Services",
+      category: "Field Operations",
+      description: "Processing an ASAP RMA while onsite.",
+      link: "https://axon.quip.com/tTsUAc6yp56q/Advanced-RMA-Process-for-Fleet-Services"
+    },
+    {
+      title: "Closure and Revisit Request Email Procedures",
+      category: "Pre/Post Deployment",
+      description: "Sending wrap-up emails.",
+      link: "https://axon.quip.com/5vMZAzMhIdW1/Fleet-Services-PSM-Fleet-Closure-and-Revisit-Request-Email-Procedures"
+    },
+    {
+      title: "Pre and Post Fleet Services Templates",
+      category: "Pre/Post Deployment",
+      description: "Email templates for Fleet PSM.",
+      link: "https://axon.quip.com/0rjbAtZnjnaF/Pre-and-Post-Fleet-Services-Templates"
+    },
+    {
+      title: "Professional Services Manager Team, Axon Fleet - Contact Information",
+      category: "PSM Useful Info",
+      description: "Team contact info.",
+      link: "https://axon.quip.com/0DvDA2dQh8sH/Professional-Services-Manager-Team-Axon-Fleet-Contact-Information"
+    }
+  ];
