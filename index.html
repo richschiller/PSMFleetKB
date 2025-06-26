@@ -182,66 +182,70 @@
     return acc;
   }, {});
 
-  function createCategoryGroup(category, entries) {
-    const group = document.createElement('section');
-    group.classList.add('category-group');
+function createCategoryGroup(category, entries) {
+  const group = document.createElement('section');
+  group.classList.add('category-group');
 
-    const heading = document.createElement('h2');
-    heading.textContent = category;
-    heading.tabIndex = 0;
-    heading.setAttribute('role', 'button');
-    heading.setAttribute('aria-expanded', 'true');
-    heading.setAttribute('aria-controls', `${category.replace(/\s+/g, '-')}-entries`);
+  const heading = document.createElement('h2');
+  heading.textContent = category;
+  heading.tabIndex = 0;
+  heading.setAttribute('role', 'button');
+  heading.setAttribute('aria-expanded', 'false');  // Set collapsed by default
+  heading.setAttribute('aria-controls', `${category.replace(/\s+/g, '-')}-entries`);
 
-    const entriesDiv = document.createElement('div');
-    entriesDiv.classList.add('entries');
-    entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
+  const entriesDiv = document.createElement('div');
+  entriesDiv.classList.add('entries');
+  entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
+  entriesDiv.style.display = 'none';  // Hide entries initially
 
-    // Sort entries alphabetically
-    entries.sort((a, b) => a.title.localeCompare(b.title));
+  // Sort entries alphabetically by title
+  entries.sort((a, b) => a.title.localeCompare(b.title));
 
-    entries.forEach(entry => {
-      const entryDiv = document.createElement('div');
-      entryDiv.classList.add('entry');
-      entryDiv.setAttribute('data-title', entry.title.toLowerCase());
-      entryDiv.setAttribute('data-category', category);
+  entries.forEach(entry => {
+    const entryDiv = document.createElement('div');
+    entryDiv.classList.add('entry');
+    entryDiv.setAttribute('data-title', entry.title.toLowerCase());
+    entryDiv.setAttribute('data-category', category);
 
-      const title = document.createElement('h3');
-      const link = document.createElement('a');
-      link.href = entry.link;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = entry.title;
-      title.appendChild(link);
+    const title = document.createElement('h3');
+    const link = document.createElement('a');
+    link.href = entry.link;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = entry.title;
+    title.appendChild(link);
 
-      const desc = document.createElement('p');
-      desc.textContent = entry.description;
+    const desc = document.createElement('p');
+    desc.textContent = entry.description;
 
-      entryDiv.appendChild(title);
-      entryDiv.appendChild(desc);
-      entriesDiv.appendChild(entryDiv);
-    });
+    entryDiv.appendChild(title);
+    entryDiv.appendChild(desc);
+    entriesDiv.appendChild(entryDiv);
+  });
 
-    // Collapse toggle functionality
-    heading.addEventListener('click', () => {
-      const expanded = heading.getAttribute('aria-expanded') === 'true';
-      heading.setAttribute('aria-expanded', String(!expanded));
-      group.classList.toggle('collapsed');
-      entriesDiv.style.display = expanded ? 'none' : 'block';
-    });
+  // Set group as collapsed by default
+  group.classList.add('collapsed');
 
-    heading.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        heading.click();
-      }
-    });
+  // Collapse toggle functionality
+  heading.addEventListener('click', () => {
+    const expanded = heading.getAttribute('aria-expanded') === 'true';
+    heading.setAttribute('aria-expanded', String(!expanded));
+    group.classList.toggle('collapsed');
+    entriesDiv.style.display = expanded ? 'none' : 'block';
+  });
 
-    group.appendChild(heading);
-    group.appendChild(entriesDiv);
+  heading.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      heading.click();
+    }
+  });
 
-    return group;
-  }
+  group.appendChild(heading);
+  group.appendChild(entriesDiv);
+
+  return group;
+}
 
   // Sort categories alphabetically
   const sortedCategories = Object.entries(grouped).sort((a, b) => {
