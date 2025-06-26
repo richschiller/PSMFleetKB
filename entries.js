@@ -6,6 +6,12 @@ const entriesData = [
       link: "https://cortex.axon.com/"
     },
 {
+      title: "Cradlepoint Escalation Contact Information",
+      category: "PSM Useful Info",
+      description: "Phone/Email for Axon Cradlepoint Resources",
+      link: "https://axon.quip.com/iAH3AMBr61H6/Cradlepoint-Escalation-Contact-Information"
+    },
+{
       title: "Poke & Wrap Site",
       category: "PSM Useful Info",
       description: "PokeandWrap.com",
