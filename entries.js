@@ -1,5 +1,11 @@
 const entriesData = [
 {
+      title: "Axon Cortex",
+      category: "PSM Useful Info",
+      description: "Axon's central hub for AI resources, tools, and knowledge sharing",
+      link: "https://cortex.axon.com/"
+    },
+{
       title: "Poke & Wrap Site",
       category: "PSM Useful Info",
       description: "PokeandWrap.com",
