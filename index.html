@@ -60,23 +60,22 @@
     box-shadow: 0 0 8px var(--axon-light-blue);
   }
   
-  #quadrantContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+  #columnContainer {
+    display: flex;
     gap: 20px;
-    height: calc(100vh - 320px); /* Adjust based on header and search input height */
+    height: calc(100vh - 320px); /* Adjust based on your header and input height */
     padding: 0 20px 20px 20px;
     box-sizing: border-box;
   }
 
-  .quadrant {
+  .column {
+    flex: 1;
+    overflow-y: auto;
     background: var(--axon-light-grey);
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    overflow-y: auto;
-    padding: 10px 15px;
-    color: #333; /* Dark text for readability inside quadrants */
+    padding: 10px  15px;
+    color: #333;
   }
 
   .category-group {
@@ -96,7 +95,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #333; /* Dark text for contrast */
+    color: #333;
     font-weight: 700;
     background-color: var(--axon-accent-yellow);
     padding: 12px 20px;
@@ -165,18 +164,16 @@
 
 <input type="search" id="searchInput" placeholder="Search articles..." aria-label="Search articles" />
 
-<div id="quadrantContainer">
-  <div class="quadrant" id="quadrant1"></div>
-  <div class="quadrant" id="quadrant2"></div>
-  <div class="quadrant" id="quadrant3"></div>
-  <div class="quadrant" id="quadrant4"></div>
+<div id="columnContainer">
+  <div class="column" id="leftColumn"></div>
+  <div class="column" id="rightColumn"></div>
 </div>
 
-<script src="entries.js"></script> <!-- Make sure this file has your entriesData -->
+<script src="entries.js"></script> <!-- entries.js must contain your entriesData -->
 
 <script>
-  const quadrantIds = ['quadrant1', 'quadrant2', 'quadrant3', 'quadrant4'];
-  const quadrants = quadrantIds.map(id => document.getElementById(id));
+  const leftColumn = document.getElementById('leftColumn');
+  const rightColumn = document.getElementById('rightColumn');
 
   // Group entries by category
   const grouped = entriesData.reduce((acc, entry) => {
@@ -200,7 +197,7 @@
     entriesDiv.classList.add('entries');
     entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
 
-    // Sort entries alphabetically by title
+    // Sort entries alphabetically
     entries.sort((a, b) => a.title.localeCompare(b.title));
 
     entries.forEach(entry => {
@@ -253,13 +250,13 @@
     return catA.localeCompare(catB);
   });
 
-  // Distribute categories to quadrants, for 5 categories, append last category to quadrant4
+  // Distribute categories evenly in two columns
   sortedCategories.forEach(([cat, entries], idx) => {
     const groupElem = createCategoryGroup(cat, entries);
-    if (idx < 4) {
-      quadrants[idx].appendChild(groupElem);
+    if (idx % 2 === 0) {
+      leftColumn.appendChild(groupElem);
     } else {
-      quadrants[3].appendChild(groupElem); // Append 5th category to quadrant4
+      rightColumn.appendChild(groupElem);
     }
   });
 
