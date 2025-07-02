@@ -6,6 +6,18 @@ const entriesData = [
       link: "https://cortex.axon.com/"
     },
 {
+      title: "Insight Contact List",
+      category: "PSM Useful Info",
+      description: "Insight Leadership, TPL and Installer Contact Info",
+      link: "https://aaxn.sharepoint.com/:x:/s/fleetservices79/Ef24UVy9VVdLt3Yx4Es4asEBiqgq3jTL3G1f_gjQ4nbFbw?e=mY56cb"
+    },
+{
+      title: "ProLogic Contact List",
+      category: "PSM Useful Info",
+      description: "ProLogic Leadership, TPL and Installer Contact Info ",
+      link: "https://aaxn.sharepoint.com/sites/fleetservices79/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Ffleetservices79%2FShared%20Documents%2FAIMFAR%2C%20BEOBSESSED%2C%20EXPECTCANDOR%2C%20JOINFORCES%2C%20OWNIT%2C%20WINRIGHT%2F3RD%20PARTY%20VENDORS%20FLEET%20SERVICES%2FPROLOGICITS%2FProLogic%20Contact%20Information%2FContact%20List%20%2D%20PLO%20Axon%20Dedicated%20Team%20%2D%20April%202025%2Epdf&parent=%2Fsites%2Ffleetservices79%2FShared%20Documents%2FAIMFAR%2C%20BEOBSESSED%2C%20EXPECTCANDOR%2C%20JOINFORCES%2C%20OWNIT%2C%20WINRIGHT%2F3RD%20PARTY%20VENDORS%20FLEET%20SERVICES%2FPROLOGICITS%2FProLogic%20Contact%20Information&p=true&ga=1"
+    },
+{
       title: "Cradlepoint Escalation Contact Information",
       category: "PSM Useful Info",
       description: "Phone/Email for Axon Cradlepoint Resources",
