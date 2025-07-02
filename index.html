@@ -35,6 +35,7 @@
     border-bottom: 3px solid var(--axon-accent-yellow);
     margin-bottom: 15px;
     display: block;
+    max-width: 100%;
   }
   h1 {
     margin-bottom: 5px;
@@ -90,11 +91,7 @@
   
   .category-group h2 {
     margin-top: 0;
-    cursor: pointer;
     user-select: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     color: #333;
     font-weight: 700;
     background-color: var(--axon-accent-yellow);
@@ -102,20 +99,10 @@
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
-  
-  .category-group h2::after {
-    content: "▼";
-    font-size: 0.9em;
-    transition: transform 0.3s ease;
-    color: var(--axon-light-blue);
-  }
-  
-  .category-group.collapsed h2::after {
-    transform: rotate(-90deg);
-  }
-  
+
   .entries {
     margin-top: 18px;
+    display: block;
   }
   
   .entry {
@@ -148,6 +135,34 @@
     font-size: 1em;
     line-height: 1.3;
     color: #555;
+  }
+
+  /* Responsive styles for mobile */
+  @media (max-width: 600px) {
+    #columnContainer {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .column {
+      max-height: none;
+      overflow-y: visible;
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      width: calc(100% - 40px);
+      max-width: 100%;
+    }
+
+    .category-group {
+      padding: 15px 15px;
+    }
+
+    header img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 </style>
 </head>
@@ -182,70 +197,48 @@
     return acc;
   }, {});
 
-function createCategoryGroup(category, entries) {
-  const group = document.createElement('section');
-  group.classList.add('category-group');
+  function createCategoryGroup(category, entries) {
+    const group = document.createElement('section');
+    group.classList.add('category-group');
 
-  const heading = document.createElement('h2');
-  heading.textContent = category;
-  heading.tabIndex = 0;
-  heading.setAttribute('role', 'button');
-  heading.setAttribute('aria-expanded', 'false');  // Set collapsed by default
-  heading.setAttribute('aria-controls', `${category.replace(/\s+/g, '-')}-entries`);
+    const heading = document.createElement('h2');
+    heading.textContent = category;
 
-  const entriesDiv = document.createElement('div');
-  entriesDiv.classList.add('entries');
-  entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
-  entriesDiv.style.display = 'none';  // Hide entries initially
+    const entriesDiv = document.createElement('div');
+    entriesDiv.classList.add('entries');
+    entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
+    entriesDiv.style.display = 'block';  // Always show entries
 
-  // Sort entries alphabetically by title
-  entries.sort((a, b) => a.title.localeCompare(b.title));
+    // Sort entries alphabetically by title
+    entries.sort((a, b) => a.title.localeCompare(b.title));
 
-  entries.forEach(entry => {
-    const entryDiv = document.createElement('div');
-    entryDiv.classList.add('entry');
-    entryDiv.setAttribute('data-title', entry.title.toLowerCase());
-    entryDiv.setAttribute('data-category', category);
+    entries.forEach(entry => {
+      const entryDiv = document.createElement('div');
+      entryDiv.classList.add('entry');
+      entryDiv.setAttribute('data-title', entry.title.toLowerCase());
+      entryDiv.setAttribute('data-category', category);
 
-    const title = document.createElement('h3');
-    const link = document.createElement('a');
-    link.href = entry.link;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = entry.title;
-    title.appendChild(link);
+      const title = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = entry.link;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = entry.title;
+      title.appendChild(link);
 
-    const desc = document.createElement('p');
-    desc.textContent = entry.description;
+      const desc = document.createElement('p');
+      desc.textContent = entry.description;
 
-    entryDiv.appendChild(title);
-    entryDiv.appendChild(desc);
-    entriesDiv.appendChild(entryDiv);
-  });
+      entryDiv.appendChild(title);
+      entryDiv.appendChild(desc);
+      entriesDiv.appendChild(entryDiv);
+    });
 
-  // Set group as collapsed by default
-  group.classList.add('collapsed');
+    group.appendChild(heading);
+    group.appendChild(entriesDiv);
 
-  // Collapse toggle functionality
-  heading.addEventListener('click', () => {
-    const expanded = heading.getAttribute('aria-expanded') === 'true';
-    heading.setAttribute('aria-expanded', String(!expanded));
-    group.classList.toggle('collapsed');
-    entriesDiv.style.display = expanded ? 'none' : 'block';
-  });
-
-  heading.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      heading.click();
-    }
-  });
-
-  group.appendChild(heading);
-  group.appendChild(entriesDiv);
-
-  return group;
-}
+    return group;
+  }
 
   // Sort categories alphabetically
   const sortedCategories = Object.entries(grouped).sort((a, b) => {
