@@ -84,7 +84,7 @@ const entriesData = [
       link: "https://axon.quip.com/N1CUA7bteFhJ/PSO-Fleet-3-Services-Expedited-Non-Axon-Common-Electrical-Components"
     },    
      {
-      title: "How to escalate issues while on site",
+      title: "How to Escalate Issues While on Site",
       category: "Field Operations",
       description: "Guidance on how to request pro licenses and escalate technical or logistical issues during on-site visits.",
       link: "https://axon.quip.com/v6weAzjTJtSH/Pro-Licenses-And-Other-Onsite-Request"
