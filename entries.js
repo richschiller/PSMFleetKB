@@ -27,7 +27,7 @@ const entriesData = [
       title: "Poke & Wrap Site",
       category: "PSM Useful Info",
       description: "PokeandWrap.com",
-      link: "www.pokeandwrap.com"
+      link: "pokeandwrap.com"
     },
     {
       title: "Fleet Services SharePoint Home Page",
