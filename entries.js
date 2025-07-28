@@ -5,7 +5,7 @@ const entriesData = [
       description: "Rules for allowing Fleet 3 to work with Netmotion VPN",
       link: "https://community.absolute.com/s/article/Axon-Fleet-Dashboard-Policy"
     },
-      
+      {      
       title: "Cradlepoint Account Reassignment Request",
       category: "Field Operations",
       description: " Process for Axon Fleet team members to initiate the transfer of Cradlepoint devices between accounts",
