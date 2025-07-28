@@ -8,7 +8,7 @@ const entriesData = [
       {
       title: "Cradlepoint Account Reassignment Request",
       category: "Field Operations",
-      description: " Process for Axon Fleet team members to initiate the transfer of Cradlepoint devices between accounts",
+      description: " Process to transfer Cradlepoint devices between accounts",
       link: "https://axon.quip.com/MbUbAY7UmtbA/Cradlepoint-Account-Reassignment-Request"
     },
 {
