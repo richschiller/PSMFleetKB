@@ -16,6 +16,11 @@ const entriesData = [
       category: "PSM Useful Info",
       description: "Axon's central hub for AI resources, tools, and knowledge sharing",
       link: "https://cortex.axon.com/"
+    },{
+      title: "Geotab Configuration",
+      category: "Technical Configuration",
+      description: "How to setup a new Geotab device in a vehicle",
+      link: "https://axon.quip.com/v2CRA4mNbaGa/Geotab-Configuration"
     },
 {
       title: "Insight Contact List",
