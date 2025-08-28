@@ -1,5 +1,6 @@
 const entriesData = [
 {
+      {
       title: "Absolute/NetMotion Axon Fleet Dashboard Policy",
       category: "Configuration and Installation",
       description: "Rules for allowing Fleet 3 to work with Netmotion VPN",
