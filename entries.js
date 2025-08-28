@@ -4,11 +4,18 @@ const entriesData = [
       category: "Configuration and Installation",
       description: "Rules for allowing Fleet 3 to work with Netmotion VPN",
       link: "https://community.absolute.com/s/article/Axon-Fleet-Dashboard-Policy"
+          },
+      {
+      title: "Axon Release Notes",
+      category: "PSM Useful Info",
+      description: "Updates and Changes to Axon Systems and Devices",
+      link: "https://my.axon.com/s/release-notes?language=en_US"
+    },
     },
       {
       title: "Cradlepoint Account Reassignment Request",
       category: "Field Operations",
-      description: " Process to transfer Cradlepoint devices between accounts",
+      description: "Process to transfer Cradlepoint devices between accounts",
       link: "https://axon.quip.com/MbUbAY7UmtbA/Cradlepoint-Account-Reassignment-Request"
     },
 {
