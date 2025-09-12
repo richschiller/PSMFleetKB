@@ -30,6 +30,12 @@ const entriesData = [
     link: "https://axon.quip.com/v2CRA4mNbaGa/Geotab-Configuration"
   },
   {
+    title: "SonicWall Firewall Setup for Axon Fleet 3",
+    category: "Configuration and Installation",
+    description: "Mimicking NetMotion Rules for SonicWall and Fleet 3",
+    link: "https://axon.quip.com/H4gXAI5v3XxS/SonicWall-Firewall-Setup-for-Axon-Fleet-3-mDNS-Local-LAN-Exemption-copy"
+  },
+  {
     title: "Insight Contact List",
     category: "PSM Useful Info",
     description: "Insight Leadership, TPL and Installer Contact Info",
