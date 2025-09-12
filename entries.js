@@ -34,6 +34,11 @@ const entriesData = [
     category: "Configuration and Installation",
     description: "Mimicking NetMotion Rules for SonicWall and Fleet 3",
     link: "https://axon.quip.com/H4gXAI5v3XxS/SonicWall-Firewall-Setup-for-Axon-Fleet-3-mDNS-Local-LAN-Exemption-copy"
+  },  {
+    title: "Palo Alto Firewall Setup for Axon Fleet 3",
+    category: "Configuration and Installation",
+    description: "Mimicking NetMotion Rules for Palo Alto and Fleet 3",
+    link: "https://axon.quip.com/26HeApNazbQV/Axon-Fleet-Dashboard-Palo-Alto-Firewall-Configuration"
   },
   {
     title: "Insight Contact List",
