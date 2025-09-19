@@ -1,3 +1,5 @@
+// entries.js — full file with render + copy buttons
+
 const entriesData = [
   {
     title: "Absolute/NetMotion Axon Fleet Dashboard Policy",
@@ -34,7 +36,8 @@ const entriesData = [
     category: "Configuration and Installation",
     description: "Mimicking NetMotion Rules for SonicWall and Fleet 3",
     link: "https://axon.quip.com/H4gXAI5v3XxS/SonicWall-Firewall-Setup-for-Axon-Fleet-3-mDNS-Local-LAN-Exemption-copy"
-  },  {
+  },
+  {
     title: "Palo Alto Firewall Setup for Axon Fleet 3",
     category: "Configuration and Installation",
     description: "Mimicking NetMotion Rules for Palo Alto and Fleet 3",
@@ -167,3 +170,60 @@ const entriesData = [
     link: "https://axon.quip.com/0DvDA2dQh8sH/Professional-Services-Manager-Team-Axon-Fleet-Contact-Information"
   }
 ];
+
+// Renders entries and wires up copy buttons.
+// Place <div id="entries"></div> in your HTML before including this file.
+(function renderEntries() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('entries');
+    if (!container) return;
+
+    // Build DOM
+    const frag = document.createDocumentFragment();
+    entriesData.forEach(entry => {
+      const card = document.createElement('div');
+      card.className = 'entry-card';
+      card.innerHTML = `
+        <h3 class="entry-title">
+          <a href="${entry.link}" target="_blank" rel="noopener">${entry.title}</a>
+        </h3>
+        <p class="entry-meta"><strong>${entry.category}</strong></p>
+        <p class="entry-desc">${entry.description}</p>
+        <div class="entry-controls">
+          <button class="copy-btn" type="button" data-link="${entry.link}" aria-label="Copy link for ${entry.title}">Copy URL</button>
+          <span class="copy-feedback" aria-live="polite" hidden>Copied!</span>
+        </div>
+      `;
+      frag.appendChild(card);
+    });
+    container.appendChild(frag);
+
+    // Event delegation for copy
+    container.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+
+      const url = btn.dataset.link;
+      const feedback = btn.parentElement.querySelector('.copy-feedback');
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(url);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        feedback.hidden = false;
+        setTimeout(() => (feedback.hidden = true), 1400);
+      } catch {
+        window.prompt('Copy this URL:', url);
+      }
+    });
+  });
+})();
