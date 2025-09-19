@@ -1,4 +1,5 @@
-// entries.js — full file with render + copy buttons
+// entries.js — full file that renders entries AND adds a "Copy URL" button per article.
+// Works on GitHub Pages. Just include this file; it will render into #entries or create it if missing.
 
 const entriesData = [
   {
@@ -171,14 +172,37 @@ const entriesData = [
   }
 ];
 
-// Renders entries and wires up copy buttons.
-// Place <div id="entries"></div> in your HTML before including this file.
-(function renderEntries() {
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('entries');
-    if (!container) return;
+// Self-contained render + copy logic
+(function () {
+  const ensureContainer = () => {
+    let el = document.getElementById('entries');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'entries';
+      document.body.appendChild(el);
+    }
+    return el;
+  };
 
-    // Build DOM
+  const injectStyles = () => {
+    if (document.getElementById('entries-style')) return;
+    const css = `
+      .entry-card { border-bottom: 1px solid #eee; padding: 12px 0; }
+      .entry-title { margin: 0 0 6px; font-size: 16px; }
+      .entry-meta { margin: 0 0 4px; color: #555; }
+      .entry-desc { margin: 0 0 8px; color: #333; }
+      .entry-controls { display: flex; align-items: center; gap: 8px; }
+      .copy-btn { padding: 6px 10px; cursor: pointer; font: inherit; }
+      .copy-badge { color: #188038; font-size: 0.9em; visibility: hidden; }
+      .copy-badge.show { visibility: visible; }
+    `;
+    const style = document.createElement('style');
+    style.id = 'entries-style';
+    style.textContent = css;
+    document.head.appendChild(style);
+  };
+
+  const render = (container) => {
     const frag = document.createDocumentFragment();
     entriesData.forEach(entry => {
       const card = document.createElement('div');
@@ -191,23 +215,24 @@ const entriesData = [
         <p class="entry-desc">${entry.description}</p>
         <div class="entry-controls">
           <button class="copy-btn" type="button" data-link="${entry.link}" aria-label="Copy link for ${entry.title}">Copy URL</button>
-          <span class="copy-feedback" aria-live="polite" hidden>Copied!</span>
+          <span class="copy-badge" aria-live="polite">Copied!</span>
         </div>
       `;
       frag.appendChild(card);
     });
+    container.textContent = '';
     container.appendChild(frag);
+  };
 
-    // Event delegation for copy
+  const bindCopy = (container) => {
     container.addEventListener('click', async (e) => {
       const btn = e.target.closest('.copy-btn');
       if (!btn) return;
-
       const url = btn.dataset.link;
-      const feedback = btn.parentElement.querySelector('.copy-feedback');
+      const badge = btn.parentElement.querySelector('.copy-badge');
 
       try {
-        if (navigator.clipboard?.writeText) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(url);
         } else {
           const ta = document.createElement('textarea');
@@ -219,11 +244,24 @@ const entriesData = [
           document.execCommand('copy');
           document.body.removeChild(ta);
         }
-        feedback.hidden = false;
-        setTimeout(() => (feedback.hidden = true), 1400);
+        badge.classList.add('show');
+        setTimeout(() => badge.classList.remove('show'), 1400);
       } catch {
         window.prompt('Copy this URL:', url);
       }
     });
-  });
+  };
+
+  const init = () => {
+    injectStyles();
+    const container = ensureContainer();
+    render(container);
+    bindCopy(container);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
