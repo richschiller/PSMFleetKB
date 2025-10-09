@@ -13,110 +13,122 @@
     --axon-light-grey: #f9f9f9;
     --axon-accent-yellow: #ffd100;
   }
-  
+
+  /* Full-bleed background image and overlay */
+  html, body { height: 100%; margin: 0; }
   body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background: #0a162b; /* Dark background color */
-    color: #ffffff; /* Light text color for contrast */
+    color: #ffffff;
+    background: #0a162b;
+    background-image: url('https://aaxn.sharepoint.com/sites/fleetservices79/SiteAssets/SitePages/PSO-Fleet-Services-Team-Page/93510-1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
-  
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.55) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Page layout: header + search + columns that fill the page */
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
   header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
     border-bottom: 3px solid var(--axon-accent-yellow);
-    padding-bottom: 15px;
+    padding-bottom: 12px;
   }
-  header img {
-    width: 100%; /* full width */
-    height: auto;
-    max-height: 220px; /* Optional max height */
-    object-fit: cover;
-    border-bottom: 3px solid var(--axon-accent-yellow);
-    margin-bottom: 15px;
-    display: block;
-  }
+  /* Hide the top banner image; background now covers page */
+  header img { display: none; }
+
   h1 {
-    margin-bottom: 5px;
-    color: var(--axon-dark-blue);
+    margin: 0 0 6px 0;
+    color: var(--axon-accent-yellow);
     font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.45);
   }
-  
+
   #searchInput {
     display: block;
-    margin: 0 auto 30px auto;
+    margin: 18px auto 0 auto;
     padding: 10px 14px;
     font-size: 16px;
     border-radius: 8px;
     border: 2px solid var(--axon-light-blue);
     width: 90%;
-    max-width: 400px;
-    transition: border-color 0.3s ease;
+    max-width: 520px;
+    background: rgba(255,255,255,0.96);
+    color: #0b1a33;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
-  
   #searchInput:focus {
     outline: none;
     border-color: var(--axon-dark-blue);
-    box-shadow: 0 0 8px var(--axon-light-blue);
+    box-shadow: 0 0 8px rgba(0,173,239,0.6);
   }
-  
+
+  /* Columns container fills remaining height */
   #columnContainer {
     display: flex;
-    gap: 12px; /* reduced gap */
-    height: calc(100vh - 320px); /* Adjust based on your header and input height */
-    padding: 0 10px 20px 10px;
+    gap: 12px;
+    flex: 1;               /* fill remaining vertical space */
+    align-items: stretch;  /* make children equal height */
+    padding: 20px 10px;
     box-sizing: border-box;
-    max-width: 1200px; /* wider container */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 1200px;
+    margin: 14px auto 0 auto;
+    width: calc(100% - 40px);
   }
 
   .column {
     flex: 1;
-    overflow-y: auto;
-    background: var(--axon-light-grey);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;      /* allow proper scrolling inside flex */
+    overflow: auto;
+    background: rgba(255,255,255,0.92);
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     padding: 15px 20px;
     color: #333;
-    max-height: 100%;
   }
 
   .category-group {
-    background: white;
+    background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     padding: 20px 25px;
     border-left: 6px solid var(--axon-accent-yellow);
     color: #333;
   }
-  
   .category-group h2 {
-    margin-top: 0;
+    margin: 0;
     user-select: none;
     color: #333;
     font-weight: 700;
     background-color: var(--axon-accent-yellow);
-    padding: 12px 20px;
+    padding: 10px 16px;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
 
-  .entries {
-    margin-top: 18px;
-    display: block;
-  }
-  
-  .entry {
-    border-top: 1px solid #eee;
-    padding: 14px 0;
-  }
-  
-  .entry:first-child {
-    border-top: none;
-  }
-  
+  .entries { margin-top: 14px; display: block; }
+  .entry { border-top: 1px solid #eee; padding: 12px 0; }
+  .entry:first-child { border-top: none; }
   .entry h3 {
     margin: 0 0 6px 0;
     font-weight: 600;
@@ -125,26 +137,14 @@
     gap: 6px;
     flex-wrap: wrap;
   }
-  
   .entry h3 a {
     color: var(--axon-dark-blue);
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  
-  .entry h3 a:hover {
-    text-decoration: underline;
-    color: var(--axon-light-blue);
-  }
-  
-  p {
-    margin: 0;
-    font-size: 1em;
-    line-height: 1.3;
-    color: #555;
-  }
+  .entry h3 a:hover { text-decoration: underline; color: var(--axon-light-blue); }
+  p { margin: 0; font-size: 1em; line-height: 1.3; color: #555; }
 
-  /* Copy icon button */
   .copy-link-btn {
     border: none;
     background: transparent;
@@ -156,193 +156,167 @@
   .copy-link-btn:hover { color: var(--axon-light-blue); }
   .copy-link-btn svg { width: 18px; height: 18px; display: inline-block; }
 
-  /* Responsive styles for mobile */
+  /* Mobile */
   @media (max-width: 600px) {
     #columnContainer {
       flex-direction: column;
-      height: auto;
-      padding: 0 10px 20px 10px;
+      gap: 12px;
+      padding: 14px 10px 20px 10px;
+      width: calc(100% - 20px);
     }
-
     .column {
-      max-height: none;
-      overflow-y: visible;
-      margin-bottom: 20px;
-      padding: 15px 10px;
+      overflow: visible;
+      padding: 15px 12px;
     }
-
-    #searchInput {
-      width: calc(100% - 40px);
-      max-width: 100%;
-    }
-
-    .category-group {
-      padding: 15px 15px;
-    }
-
-    header img {
-      max-width: 100%;
-      height: auto;
-      max-height: none;
-    }
+    #searchInput { width: calc(100% - 40px); max-width: 100%; }
+    .category-group { padding: 15px; }
   }
 </style>
 </head>
 <body>
+  <div class="page-wrap">
+    <header>
+      <!-- Image hidden; background now covers the page -->
+      <img
+        src="https://aaxn.sharepoint.com/sites/fleetservices79/SiteAssets/SitePages/PSO-Fleet-Services-Team-Page/93510-1.jpg"
+        alt="Fleet Services Banner"
+      />
+      <h1>PSO Fleet Services Internal Knowledge Base</h1>
+      <p>Search articles below</p>
+    </header>
 
-<header>
-  <img 
-    src="https://aaxn.sharepoint.com/sites/fleetservices79/SiteAssets/SitePages/PSO-Fleet-Services-Team-Page/93510-1.jpg" 
-    alt="Fleet Services Banner" 
-  />
-  <h1>PSO Fleet Services Internal Knowledge Base</h1>
-  <p>Search articles below</p>
-</header>
+    <input type="search" id="searchInput" placeholder="Search articles..." aria-label="Search articles" />
 
-<input type="search" id="searchInput" placeholder="Search articles..." aria-label="Search articles" />
+    <div id="columnContainer">
+      <div class="column" id="leftColumn"></div>
+      <div class="column" id="rightColumn"></div>
+    </div>
+  </div>
 
-<div id="columnContainer">
-  <div class="column" id="leftColumn"></div>
-  <div class="column" id="rightColumn"></div>
-</div>
+  <script src="entries.js"></script> <!-- entries.js must contain entriesData -->
+  <script>
+    const leftColumn = document.getElementById('leftColumn');
+    const rightColumn = document.getElementById('rightColumn');
 
-<script src="entries.js"></script> <!-- entries.js must contain entriesData -->
+    // Group entries by category
+    const grouped = entriesData.reduce((acc, entry) => {
+      if (!acc[entry.category]) acc[entry.category] = [];
+      acc[entry.category].push(entry);
+      return acc;
+    }, {});
 
-<script>
-  const leftColumn = document.getElementById('leftColumn');
-  const rightColumn = document.getElementById('rightColumn');
+    function createCategoryGroup(category, entries) {
+      const group = document.createElement('section');
+      group.classList.add('category-group');
 
-  // Group entries by category
-  const grouped = entriesData.reduce((acc, entry) => {
-    if (!acc[entry.category]) acc[entry.category] = [];
-    acc[entry.category].push(entry);
-    return acc;
-  }, {});
+      const heading = document.createElement('h2');
+      heading.textContent = category;
 
-  function createCategoryGroup(category, entries) {
-    const group = document.createElement('section');
-    group.classList.add('category-group');
+      const entriesDiv = document.createElement('div');
+      entriesDiv.classList.add('entries');
+      entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
+      entriesDiv.style.display = 'block'; // Always show entries
 
-    const heading = document.createElement('h2');
-    heading.textContent = category;
+      // Sort entries alphabetically by title
+      entries.sort((a, b) => a.title.localeCompare(b.title));
 
-    const entriesDiv = document.createElement('div');
-    entriesDiv.classList.add('entries');
-    entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
-    entriesDiv.style.display = 'block';  // Always show entries
+      entries.forEach(entry => {
+        const entryDiv = document.createElement('div');
+        entryDiv.classList.add('entry');
+        entryDiv.setAttribute('data-title', entry.title.toLowerCase());
+        entryDiv.setAttribute('data-category', category);
 
-    // Sort entries alphabetically by title
-    entries.sort((a, b) => a.title.localeCompare(b.title));
+        const title = document.createElement('h3');
 
-    entries.forEach(entry => {
-      const entryDiv = document.createElement('div');
-      entryDiv.classList.add('entry');
-      entryDiv.setAttribute('data-title', entry.title.toLowerCase());
-      entryDiv.setAttribute('data-category', category);
+        const link = document.createElement('a');
+        link.href = entry.link;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = entry.title;
 
-      const title = document.createElement('h3');
+        // Copy icon button next to the link
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-link-btn';
+        copyBtn.type = 'button';
+        copyBtn.title = 'Copy link';
+        copyBtn.setAttribute('aria-label', `Copy link for ${entry.title}`);
+        copyBtn.dataset.link = entry.link;
+        copyBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
+          </svg>
+        `;
 
-      const link = document.createElement('a');
-      link.href = entry.link;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = entry.title;
+        title.appendChild(link);
+        title.appendChild(copyBtn);
 
-      // Copy icon button next to the link
-      const copyBtn = document.createElement('button');
-      copyBtn.className = 'copy-link-btn';
-      copyBtn.type = 'button';
-      copyBtn.title = 'Copy link';
-      copyBtn.setAttribute('aria-label', `Copy link for ${entry.title}`);
-      copyBtn.dataset.link = entry.link;
-      copyBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
-        </svg>
-      `;
+        const desc = document.createElement('p');
+        desc.textContent = entry.description;
 
-      title.appendChild(link);
-      title.appendChild(copyBtn);
+        entryDiv.appendChild(title);
+        entryDiv.appendChild(desc);
+        entriesDiv.appendChild(entryDiv);
+      });
 
-      const desc = document.createElement('p');
-      desc.textContent = entry.description;
+      group.appendChild(heading);
+      group.appendChild(entriesDiv);
 
-      entryDiv.appendChild(title);
-      entryDiv.appendChild(desc);
-      entriesDiv.appendChild(entryDiv);
-    });
-
-    group.appendChild(heading);
-    group.appendChild(entriesDiv);
-
-    return group;
-  }
-
-  // Sort categories alphabetically
-  const sortedCategories = Object.entries(grouped).sort((a, b) => {
-    const catA = a[0].toLowerCase();
-    const catB = b[0].toLowerCase();
-    return catA.localeCompare(catB);
-  });
-
-  // Distribute categories evenly in two columns
-  sortedCategories.forEach(([cat, entries], idx) => {
-    const groupElem = createCategoryGroup(cat, entries);
-    if (idx % 2 === 0) {
-      leftColumn.appendChild(groupElem);
-    } else {
-      rightColumn.appendChild(groupElem);
+      return group;
     }
-  });
 
-  // Search filter
-  const searchInput = document.getElementById('searchInput');
+    // Sort categories alphabetically and distribute evenly between columns
+    const sortedCategories = Object.entries(grouped).sort((a, b) =>
+      a[0].toLowerCase().localeCompare(b[0].toLowerCase())
+    );
 
-  searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value.toLowerCase();
-
-    const allEntries = document.querySelectorAll('.entry');
-    allEntries.forEach(entry => {
-      const title = entry.getAttribute('data-title');
-      const match = title.includes(searchTerm);
-      entry.style.display = match ? '' : 'none';
+    sortedCategories.forEach(([cat, entries], idx) => {
+      const groupElem = createCategoryGroup(cat, entries);
+      (idx % 2 === 0 ? leftColumn : rightColumn).appendChild(groupElem);
     });
 
-    const allGroups = document.querySelectorAll('.category-group');
-    allGroups.forEach(group => {
-      const visibleEntries = group.querySelectorAll('.entry:not([style*="display: none"])');
-      group.style.display = visibleEntries.length ? '' : 'none';
+    // Search filter
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      const allEntries = document.querySelectorAll('.entry');
+      allEntries.forEach(entry => {
+        const title = entry.getAttribute('data-title') || '';
+        entry.style.display = title.includes(searchTerm) ? '' : 'none';
+      });
+
+      const allGroups = document.querySelectorAll('.category-group');
+      allGroups.forEach(group => {
+        const visibleEntries = group.querySelectorAll('.entry:not([style*="display: none"])');
+        group.style.display = visibleEntries.length ? '' : 'none';
+      });
     });
-  });
 
-  // Copy-to-clipboard handler for per-entry copy buttons
-  document.addEventListener('click', async (e) => {
-    const btn = e.target.closest('.copy-link-btn');
-    if (!btn) return;
-
-    const url = btn.dataset.link;
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url);
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = url;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
+    // Copy-to-clipboard for per-entry copy buttons
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-link-btn');
+      if (!btn) return;
+      const url = btn.dataset.link;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(url);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        const oldTitle = btn.title;
+        btn.title = 'Copied!';
+        setTimeout(() => (btn.title = oldTitle), 1200);
+      } catch {
+        window.prompt('Copy this URL:', url);
       }
-      // Brief tooltip confirmation by swapping title
-      const oldTitle = btn.title;
-      btn.title = 'Copied!';
-      setTimeout(() => (btn.title = oldTitle), 1200);
-    } catch {
-      window.prompt('Copy this URL:', url);
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
