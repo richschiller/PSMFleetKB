@@ -11,7 +11,12 @@ const entriesData = [
     description: "Updates and Changes to Axon Systems and Devices",
     link: "https://my.axon.com/s/release-notes?language=en_US"
   },
-  {
+   {
+    title: "Upgrading Ericsson R980 Modem Software",
+    category: "Field Operations",
+    description: "How to perform a modem upgrade on a R980 Router",
+    link: "https://docs.cradlepoint.com/r/Best-Practice-Updating-Router-NCOS-and-Modem-Firmware/Overview-of-Ericsson-Cradlepoint-Software-Upgrades"
+  }, {
     title: "Cradlepoint Account Reassignment Request",
     category: "Field Operations",
     description: "Process to transfer Cradlepoint devices between accounts",
