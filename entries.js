@@ -11,6 +11,12 @@ const entriesData = [
     description: "Updates and Changes to Axon Systems and Devices",
     link: "https://my.axon.com/s/release-notes?language=en_US"
   },
+  {
+    title: "Setting Up a Panasonic FZ-N1",
+    category: "PSM Useful Info",
+    description: "Device Setup Instructions",
+    link: "https://axon.quip.com/7fsbACwKjwJb/Panasonic-FZ-N1-Updates"
+  },
    {
     title: "Upgrading Ericsson R980 Modem Software",
     category: "Field Operations",
