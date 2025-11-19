@@ -16,9 +16,10 @@ const entriesData = [
     category: "PSM Useful Info",
     description: "Device Setup Instructions",
     link: "https://axon.quip.com/7fsbACwKjwJb/Panasonic-FZ-N1-Updates"
-  },  {
+  },  
+  {
     title: "VPN Debug Tool for Dashboard",
-    category: "Field Operation",
+    category: "Field Operations",
     description: "Connection Check Tool for Windows",
     link: "https://axon.quip.com/8ajhADLSbXVz/New-Debug-Tool-for-Fleet-Dashboard-Windows-VPN-Connection-Triage"
   },
