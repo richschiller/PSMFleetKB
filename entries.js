@@ -11,6 +11,12 @@ const entriesData = [
     description: "Updates and Changes to Axon Systems and Devices",
     link: "https://my.axon.com/s/release-notes?language=en_US"
   },
+ {
+    title: "Fleet Product Shipment Tracking Dashboard",
+    category: "PSM Useful Info",
+    description: "Shipping Info on Fleet Product for Agency",
+    link: "https://app.sigmacomputing.com/axon/workbook/Fleet-Deployment-Shipping-Tracker-4DkWGE3tnxnDN7HMzB1Hov?:nodeId=K-olQUv87e&:customView=06b8f9d5-8d45-4ee4-bb19-548eceea7f81"
+  }, 
   {
     title: "Setting Up a Panasonic FZ-N1",
     category: "PSM Useful Info",
