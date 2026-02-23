@@ -15,7 +15,7 @@ const entriesData = [
     title: "Fleet Product Shipment Tracking Dashboard",
     category: "PSM Useful Info",
     description: "Shipping Info on Fleet Product for Agency",
-    link: "https://app.sigmacomputing.com/axon/workbook/Fleet-Deployment-Shipping-Tracker-4DkWGE3tnxnDN7HMzB1Hov?:nodeId=K-olQUv87e&:customView=06b8f9d5-8d45-4ee4-bb19-548eceea7f81"
+    link: "https://app.sigmacomputing.com/axon/workbook/Tracking-Dashboard-2gjGuXxZuB6uFQmVQDYL7e?:[…]-olQUv87e&:savedView=1523dfed-a227-47a3-84c5-e98d5dffe5c2Sigma Computing"
   }, 
   {
     title: "Setting Up a Panasonic FZ-N1",
