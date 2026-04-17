@@ -1,322 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Internal Knowledge Base</title>
-<style>
-  /* Axon Brand Colors */
-  :root {
-    --axon-dark-blue: #0078d4;
-    --axon-light-blue: #00adef;
-    --axon-dark-grey: #333333;
-    --axon-light-grey: #f9f9f9;
-    --axon-accent-yellow: #ffd100;
-  }
-
-  /* Full-bleed background image and overlay */
-  html, body { height: 100%; margin: 0; }
-  body {
-    font-family: Arial, sans-serif;
-    color: #ffffff;
-    background: #0a162b;
-    background-image: url('https://aaxn.sharepoint.com/sites/fleetservices79/SiteAssets/SitePages/PSO-Fleet-Services-Team-Page/93510-1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.55) 100%);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  /* Page layout: header + search + columns that fill the page */
-  .page-wrap {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  header {
-    text-align: center;
-    margin-bottom: 18px;
-    border-bottom: 3px solid var(--axon-accent-yellow);
-    padding-bottom: 12px;
-  }
-  /* Hide the top banner image; background now covers page */
-  header img { display: none; }
-
-  h1 {
-    margin: 0 0 6px 0;
-    color: var(--axon-accent-yellow);
-    font-weight: 700;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.45);
-  }
-
-  #searchInput {
-    display: block;
-    margin: 18px auto 0 auto;
-    padding: 10px 14px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 2px solid var(--axon-light-blue);
-    width: 90%;
-    max-width: 520px;
-    background: rgba(255,255,255,0.96);
-    color: #0b1a33;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  #searchInput:focus {
-    outline: none;
-    border-color: var(--axon-dark-blue);
-    box-shadow: 0 0 8px rgba(0,173,239,0.6);
-  }
-
-  /* Columns container fills remaining height */
-  #columnContainer {
-    display: flex;
-    gap: 12px;
-    flex: 1;               /* fill remaining vertical space */
-    align-items: stretch;  /* make children equal height */
-    padding: 20px 10px;
-    box-sizing: border-box;
-    max-width: 1200px;
-    margin: 14px auto 0 auto;
-    width: calc(100% - 40px);
-  }
-
-  .column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;      /* allow proper scrolling inside flex */
-    overflow: auto;
-    background: rgba(255,255,255,0.92);
-    border-radius: 10px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    padding: 15px 20px;
-    color: #333;
-  }
-
-  .category-group {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    margin-bottom: 20px;
-    padding: 20px 25px;
-    border-left: 6px solid var(--axon-accent-yellow);
-    color: #333;
-  }
-  .category-group h2 {
-    margin: 0;
-    user-select: none;
-    color: #333;
-    font-weight: 700;
-    background-color: var(--axon-accent-yellow);
-    padding: 10px 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-
-  .entries { margin-top: 14px; display: block; }
-  .entry { border-top: 1px solid #eee; padding: 12px 0; }
-  .entry:first-child { border-top: none; }
-  .entry h3 {
-    margin: 0 0 6px 0;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .entry h3 a {
-    color: var(--axon-dark-blue);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  .entry h3 a:hover { text-decoration: underline; color: var(--axon-light-blue); }
-  p { margin: 0; font-size: 1em; line-height: 1.3; color: #555; }
-
-  .copy-link-btn {
-    border: none;
-    background: transparent;
-    color: var(--axon-dark-blue);
-    cursor: pointer;
-    padding: 0 0 0 4px;
-    line-height: 0;
-  }
-  .copy-link-btn:hover { color: var(--axon-light-blue); }
-  .copy-link-btn svg { width: 18px; height: 18px; display: inline-block; }
-
-  /* Mobile */
-  @media (max-width: 600px) {
-    #columnContainer {
-      flex-direction: column;
-      gap: 12px;
-      padding: 14px 10px 20px 10px;
-      width: calc(100% - 20px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PSO Fleet Services Knowledge Base — Moved to Cortex</title>
+  <meta http-equiv="refresh" content="15;url=https://cortex.axon.com/sites/fleet-pso-knowledge-base-69333bfb">
+  <style>
+    :root {
+      --axon-dark-blue: #0078d4;
+      --axon-light-blue: #00adef;
+      --axon-yellow: #ffd100;
     }
-    .column {
-      overflow: visible;
-      padding: 15px 12px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      background: #0a162b;
+      background-image: url('https://aaxn.sharepoint.com/sites/fleetservices79/SiteAssets/SitePages/PSO-Fleet-Services-Team-Page/93510-1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-    #searchInput { width: calc(100% - 40px); max-width: 100%; }
-    .category-group { padding: 15px; }
-  }
-</style>
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.75) 100%);
+      z-index: 0;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--axon-yellow);
+      color: #0a162b;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 1.9rem;
+      color: var(--axon-yellow);
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+    .subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .subtitle strong { color: var(--axon-yellow); }
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-left: 6px solid var(--axon-yellow);
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      text-align: left;
+      color: #333;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .card h2 {
+      font-size: 1.1rem;
+      color: #0a162b;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary {
+      background: var(--axon-dark-blue);
+      color: #ffffff;
+    }
+    .btn-slack {
+      background: #4A154B;
+      color: #ffffff;
+    }
+    .countdown {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .countdown span {
+      color: var(--axon-yellow);
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-  <div class="page-wrap">
-    <header>
-      <!-- Image hidden; background now covers the page -->
-      <img
-        src="https://aaxn.sharepoint.com/sites/fleetservices79/SiteAssets/SitePages/PSO-Fleet-Services-Team-Page/93510-1.jpg"
-        alt="Fleet Services Banner"
-      />
-      <h1>PSO Fleet Services Internal Knowledge Base</h1>
-      <p>Search articles below</p>
-    </header>
+  <div class="container">
+    <div class="badge">⚠ Page Retiring</div>
+    <h1>PSO Fleet Services Knowledge Base</h1>
+    <p class="subtitle">
+      This knowledge base has moved to <strong>Cortex</strong>. All future
+      updates are published there. This GitHub page will be removed soon.
+    </p>
 
-    <input type="search" id="searchInput" placeholder="Search articles..." aria-label="Search articles" />
-
-    <div id="columnContainer">
-      <div class="column" id="leftColumn"></div>
-      <div class="column" id="rightColumn"></div>
+    <div class="card">
+      <h2>📚 New Knowledge Base Location</h2>
+      <p>
+        The full PSO Fleet Services Knowledge Base — all articles, procedures,
+        and reference docs — now lives on Cortex Pages with the same layout
+        you're used to.
+      </p>
+      <a class="btn btn-primary"
+         href="https://cortex.axon.com/sites/fleet-pso-knowledge-base-69333bfb">
+        Go to Cortex Knowledge Base →
+      </a>
     </div>
+
+    <div class="card">
+      <h2>🤖 New: PSM Fleet Wiki Bot in Slack</h2>
+      <p>
+        Need a quick answer? Ask the new <strong>PSM Fleet Wiki</strong> bot
+        in <strong>#fleet-psmbot</strong>. It knows every article in the
+        knowledge base and can answer your questions in plain English.
+      </p>
+      <a class="btn btn-slack"
+         href="https://axon.enterprise.slack.com/archives/C0ARUDBHVUN">
+        Open #fleet-psmbot in Slack →
+      </a>
+    </div>
+
+    <p class="countdown">
+      Auto-redirecting to Cortex in <span id="timer">15</span> seconds…
+    </p>
   </div>
 
-  <script src="entries.js"></script> <!-- entries.js must contain entriesData -->
   <script>
-    const leftColumn = document.getElementById('leftColumn');
-    const rightColumn = document.getElementById('rightColumn');
-
-    // Group entries by category
-    const grouped = entriesData.reduce((acc, entry) => {
-      if (!acc[entry.category]) acc[entry.category] = [];
-      acc[entry.category].push(entry);
-      return acc;
-    }, {});
-
-    function createCategoryGroup(category, entries) {
-      const group = document.createElement('section');
-      group.classList.add('category-group');
-
-      const heading = document.createElement('h2');
-      heading.textContent = category;
-
-      const entriesDiv = document.createElement('div');
-      entriesDiv.classList.add('entries');
-      entriesDiv.id = `${category.replace(/\s+/g, '-')}-entries`;
-      entriesDiv.style.display = 'block'; // Always show entries
-
-      // Sort entries alphabetically by title
-      entries.sort((a, b) => a.title.localeCompare(b.title));
-
-      entries.forEach(entry => {
-        const entryDiv = document.createElement('div');
-        entryDiv.classList.add('entry');
-        entryDiv.setAttribute('data-title', entry.title.toLowerCase());
-        entryDiv.setAttribute('data-category', category);
-
-        const title = document.createElement('h3');
-
-        const link = document.createElement('a');
-        link.href = entry.link;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = entry.title;
-
-        // Copy icon button next to the link
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-link-btn';
-        copyBtn.type = 'button';
-        copyBtn.title = 'Copy link';
-        copyBtn.setAttribute('aria-label', `Copy link for ${entry.title}`);
-        copyBtn.dataset.link = entry.link;
-        copyBtn.innerHTML = `
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
-          </svg>
-        `;
-
-        title.appendChild(link);
-        title.appendChild(copyBtn);
-
-        const desc = document.createElement('p');
-        desc.textContent = entry.description;
-
-        entryDiv.appendChild(title);
-        entryDiv.appendChild(desc);
-        entriesDiv.appendChild(entryDiv);
-      });
-
-      group.appendChild(heading);
-      group.appendChild(entriesDiv);
-
-      return group;
-    }
-
-    // Sort categories alphabetically and distribute evenly between columns
-    const sortedCategories = Object.entries(grouped).sort((a, b) =>
-      a[0].toLowerCase().localeCompare(b[0].toLowerCase())
-    );
-
-    sortedCategories.forEach(([cat, entries], idx) => {
-      const groupElem = createCategoryGroup(cat, entries);
-      (idx % 2 === 0 ? leftColumn : rightColumn).appendChild(groupElem);
-    });
-
-    // Search filter
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value.toLowerCase();
-
-      const allEntries = document.querySelectorAll('.entry');
-      allEntries.forEach(entry => {
-        const title = entry.getAttribute('data-title') || '';
-        entry.style.display = title.includes(searchTerm) ? '' : 'none';
-      });
-
-      const allGroups = document.querySelectorAll('.category-group');
-      allGroups.forEach(group => {
-        const visibleEntries = group.querySelectorAll('.entry:not([style*="display: none"])');
-        group.style.display = visibleEntries.length ? '' : 'none';
-      });
-    });
-
-    // Copy-to-clipboard for per-entry copy buttons
-    document.addEventListener('click', async (e) => {
-      const btn = e.target.closest('.copy-link-btn');
-      if (!btn) return;
-      const url = btn.dataset.link;
-      try {
-        if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(url);
-        } else {
-          const ta = document.createElement('textarea');
-          ta.value = url;
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-        }
-        const oldTitle = btn.title;
-        btn.title = 'Copied!';
-        setTimeout(() => (btn.title = oldTitle), 1200);
-      } catch {
-        window.prompt('Copy this URL:', url);
+    let seconds = 15;
+    const el = document.getElementById('timer');
+    const interval = setInterval(() => {
+      seconds--;
+      el.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href =
+          'https://cortex.axon.com/sites/fleet-pso-knowledge-base-69333bfb';
       }
-    });
+    }, 1000);
   </script>
 </body>
 </html>
